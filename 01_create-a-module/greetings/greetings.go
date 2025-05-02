@@ -14,6 +14,21 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+func Hellos(names []string) (map[string]string, error) {
+	// make(map[keyType]valueType)
+	messages := make(map[string]string)
+	// `range` returns index of current item & value of current item
+	for _, name := range names {
+		message, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+
+		messages[name] = message
+	}
+	return messages, nil
+}
+
 func randomFormat() string {
 	formats := []string{
 		"Hi, %v. Welcome!",
